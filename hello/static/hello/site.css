@@ -1,41 +1,69 @@
-.message {
-    font-weight: 600;
-    color: blue;
-}
-
+/* Barra superior */
 .navbar {
     background-color: lightslategray;
-    font-size: 1em;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: white;
-    padding: 8px 5px 8px 5px;
-}
-
-.navbar a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.navbar-brand {
     font-size: 1.2em;
-    font-weight: 600;
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.navbar-item {
-    font-variant: small-caps;
-    margin-left: 30px;
+/* Contenedor principal */
+.container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
 }
 
-.body-content {
-    padding: 5px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* Menú lateral */
+.sidebar {
+    background-color: #f4f4f4;
+    width: 200px;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
-input[name=message] {
-    width: 80%;
+.sidebar ul {
+    list-style: none;
+    padding: 0;
 }
 
-.message_list th,td {
-    text-align: left;
-    padding-right: 15px;
+.sidebar li {
+    margin: 15px 0;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sidebar a:hover {
+    color: lightslategray;
+}
+
+/* Contenido principal */
+.content {
+    flex: 1;
+    padding: 20px;
+    background-color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-y: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        box-shadow: none;
+        text-align: center;
+    }
 }
