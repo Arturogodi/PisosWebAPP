@@ -73,7 +73,7 @@ def model_idealista(request):
     else:
         form = PropiedadForm()
 
-    return render(request, 'hello/modelo_idealista.html', {'form': form, 'propiedad_creada': propiedad_creada})
+    return render(request, 'hello/model_idealista.html', {'form': form, 'propiedad_creada': propiedad_creada})
 
 """ 
 

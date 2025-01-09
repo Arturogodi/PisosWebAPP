@@ -65,7 +65,53 @@
     }
 }
 
+/* Estilo para los contenedores principales */
+.container {
+    background-color: #f9f9f9; /* Fondo suave */
+    border-radius: 10px; /* Bordes curvados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    padding: 20px;
+    margin-bottom: 20px;
+}
 
+/* Estilo para los formularios */
+form {
+    background-color: #ffffff; /* Fondo blanco para el formulario */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
 
+/* Añadir más separación entre los elementos del formulario */
+form input, form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+/* Estilo para los botones */
+button {
+    background-color: #007bff; /* Azul para el botón */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+button:hover {
+    background-color: #0056b3; /* Cambia el color al pasar el ratón */
+}
+
+/* Estilo para los encabezados */
+h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 15px;
+}
 
 
