@@ -43,9 +43,12 @@ def log_message(request):
             message = form.save(commit=False)
             message.log_date = datetime.now()
             message.save()
-            return redirect("home")
-    else:
-        return render(request, "hello/log_message.html", {"form": form})
+            return redirect("log_message")
+    messages = LogMessage.objects.all().order_by("-log_date")
+    
+    return render(request, "hello/log_message.html", {"form": form, "messages": messages})
+    #else:
+    #    return render(request, "hello/log_message.html", {"form": form})
 
 
 """ 

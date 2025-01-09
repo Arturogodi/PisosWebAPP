@@ -1,11 +1,27 @@
 {% extends "hello/layout.html" %}
+
 {% block title %}
     Log a message
 {% endblock %}
+
 {% block content %}
     <form method="POST" class="log-form">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="save btn btn-default">Log</button>
     </form>
+
+    <h2>Logged Messages</h2>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>
+                    <strong>{{ message.log_date|date:"Y-m-d H:i:s" }}</strong>: 
+                    {{ message.message }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay mensajes registrados aún.</p>
+    {% endif %}
 {% endblock %}
