@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['pisoswebapp-bzc2agd6dpcwfqf9.northeurope-01.azurewebsites.net']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://pisoswebapp-bzc2agd6dpcwfqf9.northeurope-01.azurewebsites.net',  # Agrega tu dominio de Azure aquí
+]
 
 # Application definition
 
