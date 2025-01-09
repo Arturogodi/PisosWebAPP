@@ -1,0 +1,44 @@
+{% extends "hello/layout.html" %}
+
+{% block title %}
+    Modelo Idealista
+{% endblock %}
+
+{% block content %}
+    <h2>Formulario para crear propiedad</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Crear propiedad</button>
+    </form>
+
+    {% if propiedad_creada %}
+        <h3>Propiedad creada</h3>
+        <ul>
+            <li><strong>ID:</strong> {{ propiedad_creada.id }}</li>
+            <li><strong>Tipo:</strong> {{ propiedad_creada.tipo }}</li>
+            <li><strong>Metros:</strong> {{ propiedad_creada.metros }}</li>
+            <li><strong>Baños:</strong> {{ propiedad_creada.banos }}</li>
+            <li><strong>Estado:</strong> {{ propiedad_creada.estado }}</li>
+        </ul>
+    {% endif %}
+
+    <hr/>
+
+    <!-- Segundo contenedor: Petición a API -->
+    <div id="api-request">
+        <button onclick="peticionAPI()">Realizar petición API</button>
+        <div id="api-response">
+            <!-- Placeholder para los datos tabulados -->
+            <p>Petición realizada correctamente. Los resultados aparecerán aquí.</p>
+        </div>
+    </div>
+
+    <hr/>
+
+    <!-- Tercer contenedor: Mapa centrado en Madrid -->
+    <div id="mapa">
+        <h3>Mapa centrado en Madrid</h3>
+        <iframe width="100%" height="400" src="https://www.google.com/maps/embed/v1/view?key=YOUR_GOOGLE_MAPS_API_KEY&center=40.4168,-3.7038&zoom=12" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+    </div>
+{% endblock %}

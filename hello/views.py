@@ -6,6 +6,8 @@ from django.shortcuts import redirect
 from hello.forms import LogMessageForm
 from hello.models import LogMessage
 from django.views.generic import ListView
+from hello.forms import PropiedadForm
+from django.http import JsonResponse
 
 class HomeListView(ListView):
     """Renders the home page, with a list of all messages."""
@@ -50,6 +52,28 @@ def log_message(request):
     #else:
     #    return render(request, "hello/log_message.html", {"form": form})
 
+def model_idealista(request):
+    propiedad_creada = None
+    if request.method == 'POST':
+        form = PropiedadForm(request.POST)
+        if form.is_valid():
+            tipo = form.cleaned_data['tipo']
+            metros = form.cleaned_data['metros']
+            banos = form.cleaned_data['banos']
+            estado = form.cleaned_data['estado']
+
+            # Crea un diccionario con los datos ingresados para mostrarlo en la plantilla
+            propiedad_creada = {
+                'id': 1,  # O lo que sea tu ID identificador, puede ser generado dinámicamente
+                'tipo': tipo,
+                'metros': metros,
+                'banos': banos,
+                'estado': estado,
+            }
+    else:
+        form = PropiedadForm()
+
+    return render(request, 'hello/modelo_idealista.html', {'form': form, 'propiedad_creada': propiedad_creada})
 
 """ 
 
