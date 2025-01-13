@@ -1,6 +1,6 @@
 /* Barra Superior */
 .navbar {
-    background-color: lightslategray;
+    background-color: #0056b3; /* Azul tipo Azure para el encabezado */
     color: white;
     font-size: 1.5em;
     font-family: 'Trebuchet MS', Arial, sans-serif;
@@ -14,11 +14,15 @@
     display: flex;
     height: 100vh;
     overflow: hidden;
+    background-color: #f9f9f9; /* Fondo suave */
+    border-radius: 10px; /* Bordes curvados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    padding: 20px;
 }
 
 /* Barra lateral */
 .sidebar {
-    background-color: #f4f4f4;
+    background-color: #f0f8ff; /* Azul claro para la barra lateral */
     width: 200px;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
@@ -35,43 +39,22 @@
 
 .sidebar a {
     text-decoration: none;
-    color: #333;
+    color: #007bff; /* Azul para los enlaces */
     font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .sidebar a:hover {
-    color: lightslategray;
+    color: #ff4500; /* Naranja tipo Databricks para el hover */
 }
 
 /* Contenido principal */
 .body-content {
     flex: 1;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #ffffff; /* Fondo blanco para el contenido */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow-y: auto;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-
-    .sidebar {
-        width: 100%;
-        text-align: center;
-    }
-}
-
-/* Estilo para los contenedores principales */
-.container {
-    background-color: #f9f9f9; /* Fondo suave */
-    border-radius: 10px; /* Bordes curvados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    padding: 20px;
-    margin-bottom: 20px;
 }
 
 /* Estilo para los formularios */
@@ -114,4 +97,44 @@ h2 {
     margin-bottom: 15px;
 }
 
+/* Logs de las consultas */
+.logs {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f0f8ff; /* Azul claro */
+    max-height: 400px;
+    overflow-y: auto;
+}
 
+.logs table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.logs th, .logs td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.logs th {
+    background-color: #f2f2f2;
+}
+
+/* Resaltar las predicciones */
+.logs td {
+    color: #ff4500; /* Naranja tipo Databricks para las predicciones */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        text-align: center;
+    }
+}

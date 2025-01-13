@@ -1,28 +1,65 @@
 {% extends "hello/layout.html" %}
 
 {% block content %}
-<h1>Predicciones del modelo</h1>
+<h1>Predicción con GBT</h1>
+<form method="POST" action="{% url 'predict' %}">
+  {% csrf_token %}
+  <label for="bathrooms">Bathrooms:</label>
+  <input type="number" step="1" name="bathrooms" value="1"><br><br>
 
-<div class="container">
-  <form method="POST" action="{% url 'predict' %}">
-    {% csrf_token %}
-    <div class="form-group">
-      <label for="feature1">Feature 1</label>
-      <input type="number" step="any" class="form-control" id="feature1" name="feature1" required>
-    </div>
-    <div class="form-group">
-      <label for="feature2">Feature 2</label>
-      <input type="number" step="any" class="form-control" id="feature2" name="feature2" required>
-    </div>
-    <!-- Agrega más inputs según las características que necesite tu modelo -->
-    <button type="submit" class="btn btn-primary">Predecir</button>
-  </form>
+  <label for="isparking">¿Tiene parking? (0/1):</label>
+  <input type="number" step="1" name="isparking" value="0"><br><br>
 
-  {% if predictions %}
-  <div class="mt-4">
-    <h2>Resultados de la predicción:</h2>
-    <p>{{ predictions }}</p>
-  </div>
-  {% endif %}
-</div>
+  <label for="latitude">Latitude:</label>
+  <input type="number" step="any" name="latitude" value="40.4167"><br><br>
+
+  <label for="longitude">Longitude:</label>
+  <input type="number" step="any" name="longitude" value="-3.70325"><br><br>
+
+  <label for="rooms">Rooms:</label>
+  <input type="number" step="1" name="rooms" value="2"><br><br>
+
+  <label for="size">Size (m²):</label>
+  <input type="number" step="any" name="size" value="50"><br><br>
+
+  <label for="year">Year:</label>
+  <input type="number" step="1" name="year" value="2024"><br><br>
+
+  <label for="quarter">Quarter (1..4):</label>
+  <input type="number" step="1" name="quarter" value="1"><br><br>
+
+  <button type="submit">Predecir</button>
+</form>
+
+<h2>Respuesta del Modelo:</h2>
+{% if predictions %}
+    <p>El precio estimado es: <strong>{{ predictions | floatformat:2 }} EUR</strong></p>
+{% else %}
+    <p>No se pudo obtener una predicción.</p>
+{% endif %}
+
+<h2>Historial de Predicciones:</h2>
+{% if prediction_history %}
+    <ul>
+        {% for prediction in prediction_history %}
+            <li>
+                Predicción del {{ prediction.log_date | date:"d M Y H:i" }} - Precio estimado: {{ prediction.prediction_value }} EUR
+                <br>
+                Características:
+                <ul>
+                    <li><strong>Bathrooms</strong>: {{ prediction.bathrooms }}</li>
+                    <li><strong>Parking</strong>: {{ prediction.isparking }}</li>
+                    <li><strong>Latitude</strong>: {{ prediction.latitude }}</li>
+                    <li><strong>Longitude</strong>: {{ prediction.longitude }}</li>
+                    <li><strong>Rooms</strong>: {{ prediction.rooms }}</li>
+                    <li><strong>Size (m²)</strong>: {{ prediction.size }}</li>
+                    <li><strong>Year</strong>: {{ prediction.year }}</li>
+                    <li><strong>Quarter</strong>: {{ prediction.quarter }}</li>
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay historial de predicciones.</p>
+{% endif %}
 {% endblock %}
