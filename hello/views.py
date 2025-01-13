@@ -10,6 +10,7 @@ from django.views.generic import ListView
 from hello.forms import PropiedadForm
 from .models import PredictionHistory 
 from django.http import JsonResponse
+from django.shortcuts import render
 
 # Configuración del endpoint de Databricks
 DATABRICKS_ENDPOINT = "https://adb-3987092476296021.1.azuredatabricks.net/serving-endpoints/EP_APP_SERVICE/invocations"
@@ -82,6 +83,84 @@ def model_idealista(request):
     return render(request, 'hello/model_idealista.html', {'form': form, 'propiedad_creada': propiedad_creada})
 
 def predict_view(request):
+    # Valores predeterminados para el formulario
+    bathrooms = 1
+    isparking = 0
+    latitude = 40.4167
+    longitude = -3.70325
+    rooms = 2
+    size = 50
+    year = 2024
+    quarter = 1
+    predictions = None
+
+    if request.method == "POST":
+        # Leer los valores del formulario (en el caso de POST)
+        bathrooms = float(request.POST.get("bathrooms", bathrooms))
+        isparking = float(request.POST.get("isparking", isparking))
+        latitude = float(request.POST.get("latitude", latitude))
+        longitude = float(request.POST.get("longitude", longitude))
+        rooms = float(request.POST.get("rooms", rooms))
+        size = float(request.POST.get("size", size))
+        year = float(request.POST.get("year", year))
+        quarter = float(request.POST.get("quarter", quarter))
+
+        # Crear el vector de características
+        features = [bathrooms, isparking, latitude, longitude, rooms, size, year, quarter]
+
+        # Crear el payload
+        payload = {
+            "dataframe_records": [
+                {"features": features}
+            ]
+        }
+
+        # Hacer la solicitud al endpoint
+        headers = {
+            "Authorization": f"Bearer {DATABRICKS_TOKEN}",
+            "Content-Type": "application/json"
+        }
+        response = requests.post(DATABRICKS_ENDPOINT, headers=headers, json=payload)
+
+        if response.status_code == 200:
+            predictions = response.json()  # Obtener la respuesta JSON
+
+            # Asignar el valor de la predicción o un valor predeterminado
+            prediction_value = predictions["predictions"][0] if "predictions" in predictions else 0
+
+            # Guardar en la base de datos el historial de predicciones
+            PredictionHistory.objects.create(
+                bathrooms=bathrooms,
+                isparking=isparking,
+                latitude=latitude,
+                longitude=longitude,
+                rooms=rooms,
+                size=size,
+                year=year,
+                quarter=quarter,
+                prediction_value=prediction_value  # El valor de la predicción
+            )
+        else:
+            predictions = f"Error {response.status_code}: {response.text}"
+
+    # Pasamos los valores al formulario (en el caso de GET o POST)
+    prediction_history = PredictionHistory.objects.all().order_by("-log_date")[:5]  # Últimas 5 predicciones
+    return render(request, "hello/predictions.html", {
+        "bathrooms": bathrooms,
+        "isparking": isparking,
+        "latitude": latitude,
+        "longitude": longitude,
+        "rooms": rooms,
+        "size": size,
+        "year": year,
+        "quarter": quarter,
+        "predictions": predictions,  # Aseguramos que esta variable esté disponible
+        "prediction_history": prediction_history
+    })
+
+
+"""
+def predict_view(request):
     predictions = None
     if request.method == "POST":
         # Leer valores del formulario
@@ -141,7 +220,7 @@ def predict_view(request):
         "predictions": predictions,
         "prediction_history": prediction_history
     })
-
+"""
 
 """
 def predict_view(request):
@@ -206,49 +285,3 @@ def predict_view(request):
 
 """
 
-"""
-def predict_view(request):
-    predictions = None
-    if request.method == "POST":
-        # 1. Leer valores del formulario y convertirlos
-        bathrooms = float(request.POST.get("bathrooms", 1))
-        isparking = float(request.POST.get("isparking", 0))
-        latitude = float(request.POST.get("latitude", 40.4167))
-        longitude = float(request.POST.get("longitude", -3.70325))
-        rooms = float(request.POST.get("rooms", 2))
-        size = float(request.POST.get("size", 50))
-        year = float(request.POST.get("year", 2024))
-        quarter = float(request.POST.get("quarter", 1))
-
-        # 2. Crear el vector de características (usando un arreglo)
-        features = [bathrooms, isparking, latitude, longitude, rooms, size, year, quarter]
-
-        # 3. Crear el payload correcto con la columna 'features'
-        payload = {
-            "dataframe_records": [
-                {"features": features}  # Empaquetar las características en la columna 'features'
-            ]
-        }
-
-        # 4. Hacer la solicitud al endpoint
-        headers = {
-            "Authorization": f"Bearer {DATABRICKS_TOKEN}",
-            "Content-Type": "application/json"
-        }
-        response = requests.post(DATABRICKS_ENDPOINT, headers=headers, json=payload)
-
-        # 5. Manejar la respuesta
-        if response.status_code == 200:
-            predictions = response.json()  # Obtener la respuesta JSON
-            print("Predictions received:", predictions)
-
-            # Asegúrate de que el campo 'predictions' está presente
-            if "predictions" in predictions:
-                predictions = predictions["predictions"][0]  # Tomar la primera predicción
-            else:
-                predictions = "No predictions field in response"
-        else:
-            predictions = f"Error {response.status_code}: {response.text}"
-
-    return render(request, "hello/predictions.html", {"predictions": predictions})
-"""

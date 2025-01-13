@@ -7,17 +7,8 @@
     padding: 10px;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* Contenedor principal */
-.container {
-    display: flex;
-    height: 100vh;
-    overflow: hidden;
-    background-color: #f9f9f9; /* Fondo suave */
-    border-radius: 10px; /* Bordes curvados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    padding: 20px;
+    z-index: 2;  /* Asegura que la cabecera esté encima de la barra lateral */
+    position: relative;  /* La barra superior se queda en su lugar */
 }
 
 /* Barra lateral */
@@ -26,8 +17,14 @@
     width: 200px;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    height: 100vh;  /* Asegura que la barra lateral ocupe toda la altura de la página */
+    position: absolute; /* La barra lateral se posiciona debajo de la cabecera */
+    top: 0;  /* Alinea la barra lateral con la parte superior */
+    left: 0;
+    z-index: 1;  /* Asegura que la barra lateral quede por debajo de la cabecera */
 }
 
+/* Estilo para los enlaces de la barra lateral */
 .sidebar ul {
     list-style: none;
     padding: 0;
@@ -48,25 +45,134 @@
     color: #ff4500; /* Naranja tipo Databricks para el hover */
 }
 
-/* Contenido principal */
+/* Contenedor principal para el contenido (formulario y historial) */
 .body-content {
-    flex: 1;
+    margin-left: 220px; /* Da espacio para que el contenido no se sobreponga con la barra lateral */
     padding: 20px;
-    background-color: #ffffff; /* Fondo blanco para el contenido */
+    background-color: #ffffff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-y: auto;
+    height: calc(100vh - 40px); /* Ajusta la altura del contenido al tamaño disponible */
+    box-sizing: border-box;
+}
+
+/* Contenedor principal para el formulario y el historial */
+.container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+/* Sección del formulario */
+.form-section {
+    flex: 1;
+    max-width: 50%;
+    padding-right: 20px;
+    height: 100%;
     overflow-y: auto;
 }
 
-/* Estilo para los formularios */
+/* Sección del historial */
+.history-section {
+    flex: 1;
+    max-width: 50%;
+    padding-left: 20px;
+    box-sizing: border-box;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Encabezado del historial fijo */
+.history-section h2 {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    padding: 10px 0;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    z-index: 10;
+}
+
+/* Estilo para el formulario */
 form {
-    background-color: #ffffff; /* Fondo blanco para el formulario */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Ajustes para las etiquetas */
+form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Ajustes para los inputs y selects */
+form input, form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Botón */
+form button {
+    background-color: #007bff; 
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Ajustes visuales para la lista de historial */
+.history-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.history-section li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.history-section li h4 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+/* Estilo general para los encabezados */
+h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Estilo general para el contenido dentro del formulario */
+form {
+    background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
 }
 
-/* Añadir más separación entre los elementos del formulario */
-form input, form select {
+/* Ajustes para las inputs dentro del formulario */
+form input {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -75,9 +181,9 @@ form input, form select {
     font-size: 1em;
 }
 
-/* Estilo para los botones */
+/* Ajustes para los botones */
 button {
-    background-color: #007bff; /* Azul para el botón */
+    background-color: #007bff;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -87,44 +193,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3; /* Cambia el color al pasar el ratón */
-}
-
-/* Estilo para los encabezados */
-h2 {
-    font-size: 1.5em;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-/* Logs de las consultas */
-.logs {
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    background-color: #f0f8ff; /* Azul claro */
-    max-height: 400px;
-    overflow-y: auto;
-}
-
-.logs table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.logs th, .logs td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-.logs th {
-    background-color: #f2f2f2;
-}
-
-/* Resaltar las predicciones */
-.logs td {
-    color: #ff4500; /* Naranja tipo Databricks para las predicciones */
+    background-color: #0056b3;
 }
 
 /* Responsive Design */
@@ -136,5 +205,10 @@ h2 {
     .sidebar {
         width: 100%;
         text-align: center;
+    }
+
+    .form-section, .history-section {
+        max-width: 100%;
+        width: 100%;
     }
 }
