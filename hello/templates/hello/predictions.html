@@ -1,0 +1,28 @@
+{% extends "hello/layout.html" %}
+
+{% block content %}
+<h1>Predicciones del modelo</h1>
+
+<div class="container">
+  <form method="POST" action="{% url 'hello:predict' %}">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="feature1">Feature 1</label>
+      <input type="number" step="any" class="form-control" id="feature1" name="feature1" required>
+    </div>
+    <div class="form-group">
+      <label for="feature2">Feature 2</label>
+      <input type="number" step="any" class="form-control" id="feature2" name="feature2" required>
+    </div>
+    <!-- Agrega más inputs según las características que necesite tu modelo -->
+    <button type="submit" class="btn btn-primary">Predecir</button>
+  </form>
+
+  {% if predictions %}
+  <div class="mt-4">
+    <h2>Resultados de la predicción:</h2>
+    <p>{{ predictions }}</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
