@@ -15,6 +15,7 @@ urlpatterns = [
     path('log_message/', views.log_message, name='log_message'),
     path("log/", views.log_message, name="log"),
     path('model_idealista/', views.model_idealista, name='model_idealista'),
+    path("predictions/", views.predict_view, name="predict"),
 ]
 
 """
