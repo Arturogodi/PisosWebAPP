@@ -4,7 +4,7 @@
 <h1>Predicciones del modelo</h1>
 
 <div class="container">
-  <form method="POST" action="{% url 'hello:predict' %}">
+  <form method="POST" action="{% url 'predict' %}">
     {% csrf_token %}
     <div class="form-group">
       <label for="feature1">Feature 1</label>
