@@ -8,20 +8,24 @@
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 2;  /* Asegura que la cabecera esté encima de la barra lateral */
-    position: relative;  /* La barra superior se queda en su lugar */
+    position: fixed; /* Fijamos la barra superior */
+    width: 100%; /* Asegura que la barra superior ocupe todo el ancho */
+    top: 0; /* Alineamos la barra superior al top de la página */
+    left: 0; /* Alineamos la barra superior con la izquierda */
 }
 
 /* Barra lateral */
 .sidebar {
-    background-color: #f0f8ff; /* Azul claro para la barra lateral */
-    width: 200px;
+    background-color: #b3e0ff; /* Azul claro para la barra lateral */
+    width: 220px;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     height: 100vh;  /* Asegura que la barra lateral ocupe toda la altura de la página */
-    position: absolute; /* La barra lateral se posiciona debajo de la cabecera */
-    top: 0;  /* Alinea la barra lateral con la parte superior */
-    left: 0;
+    position: fixed; /* La barra lateral se posiciona debajo de la cabecera */
+    top: 40px; /* Alineamos la barra lateral debajo de la cabecera */
+    left: 10px; /* Separar la barra lateral del margen izquierdo */
     z-index: 1;  /* Asegura que la barra lateral quede por debajo de la cabecera */
+    margin-top: 0; /* Quitamos el margen superior para que la barra lateral llegue hasta arriba */
 }
 
 /* Estilo para los enlaces de la barra lateral */
@@ -39,21 +43,23 @@
     color: #007bff; /* Azul para los enlaces */
     font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: 10px; /* Añadido margen a la izquierda para separar las letras del borde */
 }
 
 .sidebar a:hover {
-    color: #ff4500; /* Naranja tipo Databricks para el hover */
+    color: #ff7043; /* Naranja tipo Databricks para el hover (más suave) */
 }
 
 /* Contenedor principal para el contenido (formulario y historial) */
 .body-content {
-    margin-left: 220px; /* Da espacio para que el contenido no se sobreponga con la barra lateral */
+    margin-left: 240px; /* Da espacio para que el contenido no se sobreponga con la barra lateral */
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #ffffff; /* Fondo blanco */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow-y: auto;
     height: calc(100vh - 40px); /* Ajusta la altura del contenido al tamaño disponible */
     box-sizing: border-box;
+    margin-top: 60px; /* Añadimos margen superior para que no quede pegado a la barra lateral */
 }
 
 /* Contenedor principal para el formulario y el historial */
