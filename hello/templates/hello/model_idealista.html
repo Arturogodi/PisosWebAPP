@@ -25,20 +25,10 @@
 
     <hr/>
 
-    <!-- Segundo contenedor: Petición a API -->
-    <div id="api-request">
-        <button onclick="peticionAPI()">Realizar petición API</button>
-        <div id="api-response">
-            <!-- Placeholder para los datos tabulados -->
-            <p>Petición realizada correctamente. Los resultados aparecerán aquí.</p>
-        </div>
-    </div>
-
-    <hr/>
-
-    <!-- Tercer contenedor: Mapa centrado en Madrid -->
+    <!-- Mostrar el mapa generado por Folium -->
     <div id="mapa">
-        <h3>Mapa centrado en Madrid</h3>
-        <iframe width="100%" height="400" src="https://www.google.com/maps/embed/v1/view?key=YOUR_GOOGLE_MAPS_API_KEY&center=40.4168,-3.7038&zoom=12" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+        <h3>Mapa centrado en la propiedad</h3>
+        <iframe src="{{ mapa_path }}" width="100%" height="400" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
     </div>
+
 {% endblock %}

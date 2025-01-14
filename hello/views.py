@@ -11,6 +11,7 @@ from hello.forms import PropiedadForm
 from .models import PredictionHistory 
 from django.http import JsonResponse
 from django.shortcuts import render
+import folium
 
 # Configuración del endpoint de Databricks
 DATABRICKS_ENDPOINT = "https://adb-3987092476296021.1.azuredatabricks.net/serving-endpoints/EP_APP_SERVICE/invocations"
@@ -81,6 +82,7 @@ def model_idealista(request):
         form = PropiedadForm()
 
     return render(request, 'hello/model_idealista.html', {'form': form, 'propiedad_creada': propiedad_creada})
+
 
 def predict_view(request):
     # Valores predeterminados para el formulario

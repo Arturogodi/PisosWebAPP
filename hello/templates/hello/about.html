@@ -1,7 +1,13 @@
 {% extends "hello/layout.html" %}
+
 {% block title %}
-<h1>About Us</h1>
+About Us
 {% endblock %}
+
 {% block content %}
-<p>About page for the Visual Studio Code Django tutorial.</p>
+<h2>About This Website</h2>
+<p>This web application is being tested locally using the Visual Studio Code debugger, and changes are pushed to the GitHub repository.</p>
+<p>Once the <strong>main</strong> branch is updated on GitHub, Azure Web Service triggers the CI/CD pipeline to deploy the changes, including any new app functionalities.</p>
+<p>The public URL of the app is: <a href="https://pisoswebapp-bzc2agd6dpcwfqf9.northeurope-01.azurewebsites.net/about/" target="_blank">Visit the app</a></p>
+<p>Note: The endpoint of the model deployed in Databricks Model Serving may not always be active due to cost-related reasons.</p>
 {% endblock %}
