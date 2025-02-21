@@ -1,34 +1,24 @@
 {% extends "hello/layout.html" %}
 
 {% block title %}
-    Modelo Idealista
+    Información sobre los datos abiertos utilizados
 {% endblock %}
 
 {% block content %}
-    <h2>Formulario para crear propiedad</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Crear propiedad</button>
-    </form>
+    <h2>idealista18: Paquete de Datos de Idealista 2018</h2>
+    <p><strong>Descripción:</strong> idealista18 es un producto de datos abiertos que contiene conjuntos de datos georreferenciados de anuncios inmobiliarios de 2018 en España. Los datos abarcan las tres ciudades más grandes: Madrid, Barcelona y Valencia. Cada conjunto incluye coordenadas aproximadas de las propiedades, precios solicitados y diversas características internas. Además, los listados se enriquecieron con información oficial del catastro español y otros elementos geográficos relevantes, como la distancia a puntos de interés urbanos.</p>
+    <p><strong>Autores:</strong></p>
+    <ul>
+        <li>David Rey-Blanco (Idealista)</li>
+        <li>Pelayo Arbués (Idealista)</li>
+        <li>Fernando López (Universidad Politécnica de Cartagena)</li>
+        <li>Antonio Páez (McMaster University)</li>
+    </ul>
+    <p><strong>Publicación:</strong> Este trabajo fue publicado en la revista Environment and Planning B: Urban Analytics and City Science. Puedes acceder al artículo a través del DOI: <a href="https://doi.org/10.1177/23998083241242844" target="_blank">10.1177/23998083241242844</a>.</p>
+    <p><strong>Licencia:</strong> Los datos se distribuyen bajo la licencia ODbL-1.0.</p>
+    <p>Para más información y acceso al código fuente, visita el repositorio en GitHub: <a href="https://github.com/paezha/idealista18" target="_blank">paezha/idealista18</a>.</p>
+    <p><strong>Adicionalmente se han utilizado algunos datos extraidos de API 2024</p>
 
-    {% if propiedad_creada %}
-        <h3>Propiedad creada</h3>
-        <ul>
-            <li><strong>ID:</strong> {{ propiedad_creada.id }}</li>
-            <li><strong>Tipo:</strong> {{ propiedad_creada.tipo }}</li>
-            <li><strong>Metros:</strong> {{ propiedad_creada.metros }}</li>
-            <li><strong>Baños:</strong> {{ propiedad_creada.banos }}</li>
-            <li><strong>Estado:</strong> {{ propiedad_creada.estado }}</li>
-        </ul>
-    {% endif %}
+    {% endblock %}
 
-    <hr/>
 
-    <!-- Mostrar el mapa generado por Folium -->
-    <div id="mapa">
-        <h3>Mapa centrado en la propiedad</h3>
-        <iframe src="{{ mapa_path }}" width="100%" height="400" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-    </div>
-
-{% endblock %}
