@@ -1,82 +1,154 @@
-{% extends "hello/layout.html" %}
-
-{% block title %}
-Home
-{% endblock %}
-
-{% block content %}
+{% extends "hello/layout.html" %} {% block title %} Home {% endblock %} {% block
+content %}
 
 <!-- Main Content Area -->
 <div class="main-content">
-
-    <!-- Videos Section -->
-    <div style="display: flex; justify-content: space-between; gap: 20px;">
-        <div style="position:relative; padding-bottom:27%; height:0; overflow:hidden; flex: 1;">
-            <h3>Demo Web App</h3>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/B8OlRdYwNlA?si=lF-wEU051nU7Srn-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-        <div style="position:relative; padding-bottom:27%; height:0; overflow:hidden; flex: 1;">
-            <h3>Demo Infraestructura Azure + Databricks</h3>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/B8OlRdYwNlA?si=lF-wEU051nU7Srn-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
+  <!-- Videos Section -->
+  <div style="display: flex; justify-content: space-between; gap: 20px">
+    <div
+      style="
+        position: relative;
+        padding-bottom: 27%;
+        height: 0;
+        overflow: hidden;
+        flex: 1;
+      "
+    >
+      <h3>Demo Web App</h3>
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/RkmBoka9VSU?si=8IK3g17Vqg7wddw_"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
     </div>
-
-    <h2>Project Overview</h2>
-    <p>For this TFM project, it was decided to create an End-to-End application developed in the Azure environment. The application provides an interactive interface with dynamic content, built using Django for both backend and frontend. The project also integrates Databricks for advanced analytics and machine learning model deployment.</p>
-
-    <p>The Databricks code: <a href="https://github.com/your-databricks-repo" target="_blank">GitHub - Databricks Code</a></p>
-    <p>The Web Application code: <a href="https://github.com/your-web-app-repo" target="_blank">GitHub - Web App Code</a></p>
-
-    <h3>Technologies Used</h3>
-    <h4>Databricks:</h4>
-    <ul>
-        <li>Python Notebooks</li>
-        <li>Workflow</li>
-        <li>Model Serving Endpoint</li>
-        <li>MLflow</li>
-        <li>Spark</li>
-        <li>Scope</li>
-    </ul>
-
-    <h4>Azure:</h4>
-    <ul>
-        <li>Azure Key Vault</li>
-        <li>Azure Data Factory</li>
-        <li>Azure Blob Storage (Delta Format)</li>
-        <li>Azure Web Services</li>
-    </ul>
-
-    <h4>Web Application:</h4>
-    <ul>
-        <li>Backend & Frontend: Django</li>
-        <li>Database: SQLite (DB3)</li>
-        <li>Frontend: HTML, CSS, JavaScript</li>
-    </ul>
-
-    <h3>Data Architecture</h3>
-    <p>The data architecture of the application follows the **Medallion Architecture** for structured data management. This architecture involves three layers:</p>
-    <ul>
-        <li><strong>Bronze Layer</strong>: Raw, unprocessed data ingested from various sources.</li>
-        <li><strong>Silver Layer</strong>: Cleaned, transformed data that is ready for analysis.</li>
-        <li><strong>Gold Layer</strong>: Final dataset optimized for business analytics and machine learning use.</li>
-    </ul>
-    <p>The datasets used in this application are stored in Azure Blob Storage in Delta format, enabling fast reads and writes, as well as compatibility with Spark for large-scale data processing.</p>
-
-    <h3>Dataset</h3>
-    <p>The dataset used in this project is collected from [mention source of your dataset, if applicable]. It contains [describe the contents of the dataset, e.g., customer data, transaction records, etc.]. The data is processed using Spark and Databricks to provide insights and predictions that power the application.</p>
-
-    <!-- Placeholder for Images -->
-    <div style="display: flex; gap: 20px;">
-        <div>
-            <h4>Azure Logo</h4>
-            <img src="https://via.placeholder.com/150x50?text=Azure+Logo" alt="Azure Logo">
-        </div>
-        <div>
-            <h4>Databricks Logo</h4>
-            <img src="https://via.placeholder.com/150x50?text=Databricks+Logo" alt="Databricks Logo">
-        </div>
+    <div
+      style="
+        position: relative;
+        padding-bottom: 27%;
+        height: 0;
+        overflow: hidden;
+        flex: 1;
+      "
+    >
+      <h3>Demo Infraestructura Azure + Databricks</h3>
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/sjX1kWD8ExI?si=g34CDUbxmN3w1v0a"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
     </div>
+  </div>
 
+  <h2>Project Overview</h2>
+  <p>
+    For this TFM project, it was decided to create an End-to-End application
+    developed in the Azure environment. The application provides an interactive
+    interface with dynamic content, built using Django for both backend and
+    frontend. The project also integrates Databricks for advanced analytics and
+    machine learning model deployment.
+  </p>
+
+  <p>
+    The Databricks code:
+    <a href="https://github.com/your-databricks-repo" target="_blank"
+      >GitHub - Databricks Code</a
+    >
+  </p>
+  <p>
+    The Web Application code:
+    <a href="https://github.com/your-web-app-repo" target="_blank"
+      >GitHub - Web App Code</a
+    >
+  </p>
+
+  <h3>Technologies Used</h3>
+  <h4>Databricks:</h4>
+  <ul>
+    <li>Python Notebooks</li>
+    <li>Workflow</li>
+    <li>Model Serving Endpoint</li>
+    <li>MLflow</li>
+    <li>Spark</li>
+    <li>Scope</li>
+  </ul>
+
+  <h4>Azure:</h4>
+  <ul>
+    <li>Azure Key Vault</li>
+    <li>Azure Data Factory</li>
+    <li>Azure Blob Storage (Delta Format)</li>
+    <li>Azure Web Services</li>
+  </ul>
+
+  <h4>Web Application:</h4>
+  <ul>
+    <li>Backend & Frontend: Django</li>
+    <li>Database: SQLite (DB3)</li>
+    <li>Frontend: HTML, CSS, JavaScript</li>
+  </ul>
+
+  <h3>Data Architecture</h3>
+  <p>
+    The data architecture of the application follows the **Medallion
+    Architecture** for structured data management. This architecture involves
+    three layers:
+  </p>
+  <ul>
+    <li>
+      <strong>Bronze Layer</strong>: Raw, unprocessed data ingested from various
+      sources.
+    </li>
+    <li>
+      <strong>Silver Layer</strong>: Cleaned, transformed data that is ready for
+      analysis.
+    </li>
+    <li>
+      <strong>Gold Layer</strong>: Final dataset optimized for business
+      analytics and machine learning use.
+    </li>
+  </ul>
+  <p>
+    The datasets used in this application are stored in Azure Blob Storage in
+    Delta format, enabling fast reads and writes, as well as compatibility with
+    Spark for large-scale data processing.
+  </p>
+
+  <h3>Dataset</h3>
+  <p>
+    The dataset used in this project is collected from [mention source of your
+    dataset, if applicable]. It contains [describe the contents of the dataset,
+    e.g., customer data, transaction records, etc.]. The data is processed using
+    Spark and Databricks to provide insights and predictions that power the
+    application.
+  </p>
+
+  <!-- Placeholder for Images -->
+  <div style="display: flex; gap: 20px">
+    <div>
+      <h4>Azure Logo</h4>
+      <img
+        src="https://via.placeholder.com/150x50?text=Azure+Logo"
+        alt="Azure Logo"
+      />
+    </div>
+    <div>
+      <h4>Databricks Logo</h4>
+      <img
+        src="https://via.placeholder.com/150x50?text=Databricks+Logo"
+        alt="Databricks Logo"
+      />
+    </div>
+  </div>
 </div>
 
 {% endblock %}
