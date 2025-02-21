@@ -26,27 +26,6 @@ class PredictionHistory(models.Model):
     log_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Prediction on {self.log_date} - Predicted Price: {self.prediction_value}"
-
-
-"""
-class PredictionHistory(models.Model):
-    # Campos para almacenar los datos de entrada de la propiedad
-    bathrooms = models.FloatField()
-    isparking = models.FloatField()
-    latitude = models.FloatField()
-    longitude = models.FloatField()
-    rooms = models.FloatField()
-    size = models.FloatField()
-    year = models.IntegerField()
-    quarter = models.IntegerField()
-    
-    # Campo para almacenar la predicción
-    prediction_value = models.FloatField()
-    
-    # Fecha y hora en que se registró la predicción
-    log_date = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"Prediction on {self.log_date} - Predicted Price: {self.prediction_value}"
-"""
+        return (
+            f"Prediction on {self.log_date} - Predicted Price: {self.prediction_value}"
+        )
