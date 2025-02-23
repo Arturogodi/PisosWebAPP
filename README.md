@@ -18,17 +18,7 @@ The project structure is as follows:
 ### Description of Files and Directories
 
 - **static/**: Contains static files such as CSS, JavaScript, and images.
-
-  - **css/**: CSS style files.
-  - **js/**: JavaScript files.
-  - **images/**: Images used in the application.
-
 - **templates/**: Contains the HTML templates of the application.
-
-  - **base.html**: Base template that other templates extend.
-  - **index.html**: Main page of the application.
-  - **detail.html**: Detail page of a specific apartment.
-
 - **app.py**: Main application file where the Flask application is configured and run.
 - **config.py**: Application configuration file.
 - **models.py**: Defines the data models used in the application.
@@ -71,6 +61,8 @@ To install and run the application locally, follow these steps:
 ## Usage
 
 Once the application is running, you can access it in your web browser at `http://localhost:5000`.
+After push changes to repository at GitHub main brach automaticaly deploy the web at `https://pisoswebapp-bzc2agd6dpcwfqf9.northeurope-01.azurewebsites.net`.
+
 
 ## Contribution
 
