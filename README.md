@@ -62,6 +62,7 @@ To install and run the application locally, follow these steps:
 
 Once the application is running, you can access it in your web browser at `http://localhost:5000`.
 After push changes to repository at GitHub main brach automaticaly deploy the web at `https://pisoswebapp-bzc2agd6dpcwfqf9.northeurope-01.azurewebsites.net`.
+(https://pisoswebapp-bzc2agd6dpcwfqf9.northeurope-01.azurewebsites.net)
 
 
 ## Contribution
